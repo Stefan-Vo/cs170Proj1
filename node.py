@@ -1,9 +1,10 @@
 class Node:
-    def __init__(self, state, parent=None, action=None, cost=0):
+    def __init__(self, state, parent=None, action=None, g_cost=0, h_cost = 0):
         self.state = state
         self.parent = parent
         self.action = action
-        self.cost = cost
+        self.g_cost = g_cost
+        self.h_cost = h_cost
 
 
     # Ideas for Functions to implement in this class:
