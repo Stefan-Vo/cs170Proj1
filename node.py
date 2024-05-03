@@ -9,6 +9,10 @@ class Node:
         self.h_cost = h_cost
 
 
+    def __lt__(self, other):
+        return self.g_cost < other.g_cost
+
+
     def expand(self, problem):
         operator_names = {
             problem.moveUp: "UP",

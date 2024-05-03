@@ -17,8 +17,8 @@ class Problem:
     def moveUp(self, state):
         new_state = state.copy()
         emptyIndex = new_state.index(0)
-        if emptyIndex not in new_state[0, 1, 2]:
-            new_state[emptyIndex], new_state[emptyIndex -3] = new_state[emptyIndex - 3], new_state[emptyIndex]
+        if emptyIndex not in [new_state[0], new_state[1], new_state[2]]:
+            new_state[emptyIndex], new_state[emptyIndex - 3] = new_state[emptyIndex - 3], new_state[emptyIndex]
             return new_state
         else:
             return None
@@ -27,7 +27,7 @@ class Problem:
     def moveDown(self, state):
         new_state = state.copy()
         emptyIndex = new_state.index(0)
-        if emptyIndex not in new_state[6, 7, 8]:
+        if emptyIndex not in [new_state[6], new_state[7], new_state[8]]:
             new_state[emptyIndex], new_state[emptyIndex + 3] = new_state[emptyIndex + 3], new_state[emptyIndex]
             return new_state
         else:
@@ -36,7 +36,7 @@ class Problem:
     def moveRight(self, state):
         new_state = state.copy()
         emptyIndex = new_state.index(0)
-        if emptyIndex not in new_state[2, 5, 8]:
+        if emptyIndex not in [new_state[2], new_state[5], new_state[8]]:
             new_state[emptyIndex], new_state[emptyIndex + 1] = new_state[emptyIndex + 1], new_state[emptyIndex]
             return new_state
         else:
@@ -45,7 +45,7 @@ class Problem:
     def moveLeft(self, state):
         new_state = state.copy()
         emptyIndex = new_state.index(0)
-        if emptyIndex not in new_state[0, 3, 6]:
+        if emptyIndex not in [new_state[0], new_state[3], new_state[6]]:
             new_state[emptyIndex], new_state[emptyIndex - 1] = new_state[emptyIndex  - 1], new_state[emptyIndex]
             return new_state
         else:
