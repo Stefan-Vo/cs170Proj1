@@ -3,8 +3,8 @@ from node import Node
 from tree import Tree
 
 def main():
-    initial_state = [1,2,4,0,3,5,6,7,8]
-    goal_state = [1,2,4,6,3,5,0,7,8]
+    initial_state = [1, 2, 0, 4, 5, 3, 7, 8, 6]
+    goal_state = [1,2,3,4,5,6,7,8,0]
 
     operators = ["UP", "DOWN", "LEFT", "RIGHT"]
 
@@ -30,19 +30,20 @@ def uniformCostSearch(problem):
 
     while tree.priority_queue:
         curr = tree.pop_node()
-
+        print(problem.goal_state)
         if curr.state == problem.goal_state:
             while curr.parent:
                 path.append(curr.operator)
                 curr = curr.parent
             path.reverse()
             return path
-
-        explored.add(curr)
-
-        for child in curr.expand(problem):
-            if tuple(child.state) not in explored:
-                tree.add_node(child)
+        
+        else:
+            newNode = curr.expand(problem)
+            for nodes in newNode:
+                print(nodes.state, nodes.operator)
+                nodes.g_cost += curr.g_cost
+                tree.add_node(nodes)
 
     return None
 
