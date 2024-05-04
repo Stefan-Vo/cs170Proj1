@@ -6,7 +6,7 @@ class Tree:
 
     def add_node(self, node):
         self.priority_queue.append(node)
-        self.priority_queue.sort(key=lambda x: x.g_cost)
+        self.priority_queue.sort(key=lambda x: x.g_cost + x.h_cost)
 
     def get_node(self):
         return self.priority_queue
