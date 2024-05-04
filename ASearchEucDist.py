@@ -5,7 +5,7 @@ import tree
 
 def euclideanDistance(startState, goalState):
     eucDist = eucDistX = eucDistY = x1 = x2 = y1 = y2 = 0
-    sizeOfPuzzle = math.sqrt(len(startState)) #because its a square the square root would be the dimensions
+    sizeOfPuzzle = int(math.sqrt(len(startState))) #because its a square the square root would be the dimensions
     for i in range(sizeOfPuzzle):
         x1 = startState.index(i) // sizeOfPuzzle # find the row of the state that we are in 
         y1 = startState.index(i) % sizeOfPuzzle # find the column of the state that we are in 
@@ -15,9 +15,10 @@ def euclideanDistance(startState, goalState):
         eucDistY = pow(y2 - y1,2)
         eucDist += math.sqrt(eucDistX + eucDistY)
     return eucDist
-def ASearchEucDist(startState, goalState):
+
+def ASearchEucDist(problem):
     #setting the scope
-    problem = Problem(startState, goalState, operators)
+    # problem = Problem(startState, goalState, operators)
     tree = Tree()
     startNode = Node(problem.initial_state)
     tree.add_node(startNode)
@@ -27,7 +28,7 @@ def ASearchEucDist(startState, goalState):
     #A* heuristic search (Euclidean Distance)
     while tree.priority_queue:
         curr = tree.pop_node()
-        if curr.state == goalState:
+        if curr.state == problem.goal_state:
             path = []
             while curr.parent:
                 path.append(curr.operator)
@@ -35,13 +36,11 @@ def ASearchEucDist(startState, goalState):
             path.reverse()
             return path
             
-        explored.add(curr.state)
+        explored.add(tuple(curr.state))
         
-        problem_child = problem.Problem(curr.state, goalState, operators)
-        for child in curr.expand(problem_child):
-            if child.state not in explored:
-                total_cost = child.g_cost + euclideanDistance(child.state, goalState)
-                tree.add_node(child, total_cost)
+        for child in curr.expand(problem):
+            if tuple(child.state) not in explored:
+                total_cost = child.g_cost + euclideanDistance(child.state, problem.goal_state)
+                tree.add_node(child)
                 
     return []
-    
