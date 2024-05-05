@@ -30,6 +30,8 @@ class Node:
         return operatorList
 
 
+
+
     # Ideas for Functions to implement in this class:
         # implement path(): Returns the sequence of actions from the initial state to this node.
         # total_cost(): returns cost of reaching this node from start
