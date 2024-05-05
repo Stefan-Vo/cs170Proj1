@@ -2,10 +2,13 @@
 from problem import Problem
 from node import Node
 from tree import Tree
+import time
 
 
 
 def uniformCostSearch(problem):
+    start_time = time.time()
+
     tree = Tree()
     startNode = Node(problem.initial_state)
     tree.add_node(startNode)
@@ -38,6 +41,8 @@ def uniformCostSearch(problem):
                 curr = curr.parent
             path.reverse()
             print("Max queue size:", max_queue_size)
+            end_time = time.time()  # Record the end time
+            print("Time taken:", end_time - start_time, "seconds")
             return path
         
         else:
@@ -54,4 +59,6 @@ def uniformCostSearch(problem):
                 #nodes.g_cost += curr.g_cost
                 tree.add_node(nodes)
     print("Max queue size:", max_queue_size)
+    end_time = time.time()  # Record the end time
+    print("Time taken:", end_time - start_time, "seconds")
     return None

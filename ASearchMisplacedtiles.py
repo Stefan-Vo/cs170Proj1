@@ -1,6 +1,7 @@
 from problem import Problem
 from node import Node
 from tree import Tree
+import time
 
 def misplacedTiles(startState, goalState):
     tiles_sum = 0;
@@ -20,6 +21,7 @@ def ASearchHeuristic(problem):
     
     #A* heuristic search (misplaced tiles)
     while tree.priority_queue:
+        start_time = time.time()
         max_queue_size = max(max_queue_size, len(tree.priority_queue))
         curr = tree.pop_node()
         if curr.state == problem.goal_state:
@@ -29,6 +31,8 @@ def ASearchHeuristic(problem):
                 curr = curr.parent
             path.reverse()
             print("Max queue size:", max_queue_size)
+            end_time = time.time()  # Record the end time
+            print("Time taken:", end_time - start_time, "seconds")
             return path
             
         explored.add(tuple(curr.state))
@@ -38,6 +42,8 @@ def ASearchHeuristic(problem):
                 child.h_cost = misplacedTiles(child.state, problem.goal_state)
                 tree.add_node(child)
     print("Max queue size:", max_queue_size)
+    end_time = time.time()  # Record the end time
+    print("Time taken:", end_time - start_time, "seconds")
     return []
     
     

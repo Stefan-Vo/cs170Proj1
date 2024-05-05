@@ -2,6 +2,7 @@ import math
 from problem import Problem
 from node import Node
 from tree import Tree
+import time
 
 def euclideanDistance(startState, goalState):
     eucDist = eucDistX = eucDistY = x1 = x2 = y1 = y2 = 0
@@ -17,6 +18,8 @@ def euclideanDistance(startState, goalState):
     return eucDist
 
 def ASearchEucDist(problem):
+    start_time = time.time()
+
     #setting the scope
     # problem = Problem(startState, goalState, operators)
     tree = Tree()
@@ -37,6 +40,8 @@ def ASearchEucDist(problem):
                 curr = curr.parent
             path.reverse()
             print("Max queue size:", max_queue_size)
+            end_time = time.time()  # Record the end time
+            print("Time taken:", end_time - start_time, "seconds")
             return path
             
         explored.add(tuple(curr.state))
@@ -46,4 +51,6 @@ def ASearchEucDist(problem):
                 total_cost = child.g_cost + euclideanDistance(child.state, problem.goal_state)
                 tree.add_node(child)
     print("Max queue size:", max_queue_size)
+    end_time = time.time()  # Record the end time
+    print("Time taken:", end_time - start_time, "seconds")
     return []
