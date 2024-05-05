@@ -44,9 +44,9 @@ def ASearchHeuristic(problem):
             for matrix in matrixOrder: #This prints out the the trace matrix
                 print("Best State to Expand: ", "G(n):", matrix.g_cost, "H(n):", matrix.h_cost, "  Operation:", matrix.operator)
                 print_state(matrix.state)
-                
+
             path.reverse()
-            print("Goal State", " Depth:", len(matrixOrder)+1)
+            print("Goal State", " Depth:", len(matrixOrder))
             print("Max queue size:", max_queue_size)
             end_time = time.time()  # Record the end time
             print("Time taken:", end_time - start_time, "seconds")

@@ -47,7 +47,7 @@ def uniformCostSearch(problem):
                 print_state(matrix.state)
 
             path.reverse()
-            print("Goal State", " Depth:", len(matrixOrder)+1)
+            print("Goal State", " Depth:", len(matrixOrder))
             print("Max queue size:", max_queue_size)
             end_time = time.time()  # Record the end time
             print("Time taken:", end_time - start_time, "seconds")
