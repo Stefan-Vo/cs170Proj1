@@ -25,7 +25,6 @@ def uniformCostSearch(problem):
 
         curr = tree.pop_node()
         #print //
-
         if tuple(curr.state) in explored:
             continue
         explored.add(tuple(curr.state))
@@ -63,4 +62,5 @@ def uniformCostSearch(problem):
     print("Max queue size:", max_queue_size)
     end_time = time.time()  # Record the end time
     print("Time taken:", end_time - start_time, "seconds")
+    print("Could not Solve")
     return None

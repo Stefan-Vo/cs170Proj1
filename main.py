@@ -19,7 +19,8 @@ def main():
     if choice == '1':
         # Use default puzzle
         initial_state = [1, 0, 3, 4, 2, 6, 7, 5, 8]  # Example default puzzle
-        #initial_state = [8, 7, 1, 6, 0, 2, 5, 4, 3]
+        #initial_state = [8, 7, 1, 6, 0, 2, 5, 4, 3] test cases from earlier
+        #initial_state = [0, 1, 2, 4, 5, 3, 7, 8, 6]
     elif choice == '2':
         # Enter custom puzzle
         print("Enter your puzzle, use a zero to represent the blank")
