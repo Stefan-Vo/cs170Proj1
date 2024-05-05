@@ -20,6 +20,7 @@ def ASearchHeuristic(problem):
     explored = set()
     max_queue_size = 0
     matrixOrder = [] #used to store the changes in the matrix 
+    nodes_expanded = 0
 
 
     
@@ -41,13 +42,15 @@ def ASearchHeuristic(problem):
 
             matrixOrder.reverse()
             for matrix in matrixOrder: #This prints out the the trace matrix
-                print("Operation:", matrix.operator, "   G(n):", matrix.g_cost, "H(n)", matrix.h_cost)
+                print("Best State to Expand: ", "G(n):", matrix.g_cost, "H(n):", matrix.h_cost, "  Operation:", matrix.operator)
                 print_state(matrix.state)
-
+                
             path.reverse()
+            print("Goal State", " Depth:", len(matrixOrder)+1)
             print("Max queue size:", max_queue_size)
             end_time = time.time()  # Record the end time
             print("Time taken:", end_time - start_time, "seconds")
+            print("Nodes expanded:", nodes_expanded)
             return path
             
         explored.add(tuple(curr.state))
@@ -55,10 +58,12 @@ def ASearchHeuristic(problem):
         for child in curr.expand(problem):
             if tuple(child.state) not in explored:
                 child.h_cost = misplacedTiles(child.state, problem.goal_state)
+                nodes_expanded += 1
                 tree.add_node(child)
     print("Max queue size:", max_queue_size)
     end_time = time.time()  # Record the end time
     print("Time taken:", end_time - start_time, "seconds")
+    print("Nodes expanded:", nodes_expanded)
     print("Could not Solve")
     return []
     

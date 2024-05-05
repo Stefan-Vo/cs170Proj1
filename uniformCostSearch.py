@@ -18,6 +18,7 @@ def uniformCostSearch(problem):
     explored = set()
     max_queue_size = 0
     matrixOrder = [] #used to store the changes in the matrix 
+    nodes_expanded = 0
 
     while tree.priority_queue:
 
@@ -42,15 +43,15 @@ def uniformCostSearch(problem):
 
             matrixOrder.reverse()
             for matrix in matrixOrder: #This prints out the the trace matrix
-                print("Operation:", matrix.operator, "   G(n):", matrix.g_cost, "H(n)", matrix.h_cost)
+                print("Best State to Expand: ", "G(n):", matrix.g_cost, "H(n):", matrix.h_cost, "  Operation:", matrix.operator)
                 print_state(matrix.state)
 
             path.reverse()
-            print("GOAL")
-            print()
+            print("Goal State", " Depth:", len(matrixOrder)+1)
             print("Max queue size:", max_queue_size)
             end_time = time.time()  # Record the end time
             print("Time taken:", end_time - start_time, "seconds")
+            print("Nodes Expanded", nodes_expanded)
             return path
         
         else:
@@ -58,9 +59,11 @@ def uniformCostSearch(problem):
             for nodes in newNode:
                 #print_state(curr.state)
                 #nodes.g_cost += curr.g_cost
+                nodes_expanded += 1
                 tree.add_node(nodes)
     print("Max queue size:", max_queue_size)
     end_time = time.time()  # Record the end time
     print("Time taken:", end_time - start_time, "seconds")
+    print("Nodes Expanded", nodes_expanded)
     print("Could not Solve")
     return None
