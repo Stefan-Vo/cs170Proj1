@@ -15,9 +15,12 @@ def ASearchHeuristic(problem):
     tree.add_node(startNode)
     path = []
     explored = set()
+    max_queue_size = 0
+
     
     #A* heuristic search (misplaced tiles)
     while tree.priority_queue:
+        max_queue_size = max(max_queue_size, len(tree.priority_queue))
         curr = tree.pop_node()
         if curr.state == problem.goal_state:
             path = []
@@ -25,6 +28,7 @@ def ASearchHeuristic(problem):
                 path.append(curr.operator)
                 curr = curr.parent
             path.reverse()
+            print("Max queue size:", max_queue_size)
             return path
             
         explored.add(tuple(curr.state))
@@ -33,7 +37,7 @@ def ASearchHeuristic(problem):
             if tuple(child.state) not in explored:
                 child.h_cost = misplacedTiles(child.state, problem.goal_state)
                 tree.add_node(child)
-                
+    print("Max queue size:", max_queue_size)
     return []
     
     
