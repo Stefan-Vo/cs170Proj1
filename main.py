@@ -18,7 +18,7 @@ def main():
     path = uniformCostSearch(problem)
 
     print(path)
-    
+
 
 
 def uniformCostSearch(problem):
@@ -30,7 +30,14 @@ def uniformCostSearch(problem):
 
     while tree.priority_queue:
         curr = tree.pop_node()
-        print(problem.goal_state)
+        #print //
+        for i in range(0, len(problem.goal_state), 3):
+            if i == 6:
+                print(*problem.goal_state[i:i+3], "Goal")
+                print()
+            else:
+                print(*problem.goal_state[i:i+3])
+        #////////
         if curr.state == problem.goal_state:
             while curr.parent:
                 path.append(curr.operator)
@@ -41,7 +48,14 @@ def uniformCostSearch(problem):
         else:
             newNode = curr.expand(problem)
             for nodes in newNode:
-                print(nodes.state, nodes.operator)
+                #print //
+                for i in range(0, len(nodes.state), 3):
+                    if i == 6:
+                        print(*nodes.state[i:i+3], nodes.operator)
+                        print()
+                    else:
+                        print(*nodes.state[i:i+3])
+                #////////
                 nodes.g_cost += curr.g_cost
                 tree.add_node(nodes)
 
