@@ -2,6 +2,8 @@ from problem import Problem
 from node import Node
 from tree import Tree
 import time
+from uniformCostSearch import print_state
+
 
 def misplacedTiles(startState, goalState):
     tiles_sum = 0;
@@ -17,6 +19,8 @@ def ASearchHeuristic(problem):
     path = []
     explored = set()
     max_queue_size = 0
+    matrixOrder = [] #used to store the changes in the matrix 
+
 
     
     #A* heuristic search (misplaced tiles)
@@ -26,9 +30,20 @@ def ASearchHeuristic(problem):
         curr = tree.pop_node()
         if curr.state == problem.goal_state:
             path = []
+            print_state(curr.state)
             while curr.parent:
                 path.append(curr.operator)
+                matrixOrder.append(curr)
                 curr = curr.parent
+
+            print("Initial State")
+            print_state(problem.initial_state)
+
+            matrixOrder.reverse()
+            for matrix in matrixOrder: #This prints out the the trace matrix
+                print("Operation:", matrix.operator, "   G(n):", matrix.g_cost, "H(n)", matrix.h_cost)
+                print_state(matrix.state)
+
             path.reverse()
             print("Max queue size:", max_queue_size)
             end_time = time.time()  # Record the end time

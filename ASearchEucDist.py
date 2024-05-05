@@ -3,6 +3,7 @@ from problem import Problem
 from node import Node
 from tree import Tree
 import time
+from uniformCostSearch import print_state
 
 def euclideanDistance(startState, goalState):
     eucDist = eucDistX = eucDistY = x1 = x2 = y1 = y2 = 0
@@ -28,6 +29,8 @@ def ASearchEucDist(problem):
     path = []
     explored = set()
     max_queue_size = 0
+    matrixOrder = [] #used to store the changes in the matrix 
+
 
     #A* heuristic search (Euclidean Distance)
     while tree.priority_queue:
@@ -35,9 +38,20 @@ def ASearchEucDist(problem):
         curr = tree.pop_node()
         if curr.state == problem.goal_state:
             path = []
+            print_state(curr.state)
             while curr.parent:
                 path.append(curr.operator)
+                matrixOrder.append(curr)
                 curr = curr.parent
+
+            print("Initial State")
+            print_state(problem.initial_state)
+
+            matrixOrder.reverse()
+            for matrix in matrixOrder: #This prints out the the trace matrix
+                print("Operation:", matrix.operator, "   G(n):", matrix.g_cost, "H(n)", matrix.h_cost)
+                print_state(matrix.state)
+            
             path.reverse()
             print("Max queue size:", max_queue_size)
             end_time = time.time()  # Record the end time
@@ -48,7 +62,7 @@ def ASearchEucDist(problem):
         
         for child in curr.expand(problem):
             if tuple(child.state) not in explored:
-                total_cost = child.g_cost + euclideanDistance(child.state, problem.goal_state)
+                child.h_cost = euclideanDistance(child.state, problem.goal_state)
                 tree.add_node(child)
     print("Max queue size:", max_queue_size)
     end_time = time.time()  # Record the end time

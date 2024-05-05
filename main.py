@@ -19,6 +19,7 @@ def main():
     if choice == '1':
         # Use default puzzle
         initial_state = [1, 0, 3, 4, 2, 6, 7, 5, 8]  # Example default puzzle
+        #initial_state = [8, 7, 1, 6, 0, 2, 5, 4, 3]
     elif choice == '2':
         # Enter custom puzzle
         print("Enter your puzzle, use a zero to represent the blank")
@@ -59,9 +60,7 @@ def ordinal(n):
         suffix = 'th'
     return str(n) + suffix
 
-#def print_state(state):
-    #for i in range(0, len(state), 3):
-        #print(state[i:i+3])
+
 
 if __name__ == "__main__":
     main()
