@@ -17,7 +17,7 @@ class Problem:
     def moveUp(self, state):
         new_state = state.copy()
         emptyIndex = new_state.index(0)
-        if emptyIndex not in [new_state[0], new_state[1], new_state[2]] and emptyIndex > 2:
+        if new_state[emptyIndex] not in [new_state[0], new_state[1], new_state[2]] and emptyIndex > 2:
             new_state[emptyIndex], new_state[emptyIndex - 3] = new_state[emptyIndex - 3], new_state[emptyIndex]
             return new_state
         else:

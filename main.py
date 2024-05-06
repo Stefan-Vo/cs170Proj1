@@ -13,14 +13,14 @@ def main():
     operators = ["UP", "DOWN", "LEFT", "RIGHT"]
 
 
-    print("Welcome to project group 8,  8 puzzle solver.")
+    print("Welcome to 862245358,  8 puzzle solver.")
     choice = input("Type '1' to use a default puzzle, or '2' to enter your own puzzle: ")
 
     if choice == '1':
         # Use default puzzle
         initial_state = [1, 0, 3, 4, 2, 6, 7, 5, 8]  # Example default puzzle
-        #initial_state = [8, 7, 1, 6, 0, 2, 5, 4, 3] test cases from earlier
-        #initial_state = [0, 1, 2, 4, 5, 3, 7, 8, 6]
+        #initial_state = [8, 7, 1, 6, 0, 2, 5, 4, 3] #test cases from earlier
+        #initial_state = [1,2,3,4,5,6,7,0,8]
     elif choice == '2':
         # Enter custom puzzle
         print("Enter your puzzle, use a zero to represent the blank")
