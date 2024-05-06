@@ -39,7 +39,7 @@ def ASearchEucDist(problem):
         curr = tree.pop_node()
         if curr.state == problem.goal_state:
             path = []
-            print_state(curr.state)
+            #print_state(curr.state)
             while curr.parent:
                 path.append(curr.operator)
                 matrixOrder.append(curr)
